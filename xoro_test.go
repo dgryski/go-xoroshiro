@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestShiftMix(t *testing.T) {
+func TestSplitMix(t *testing.T) {
 
 	var tests = []struct {
 		seed  uint64
@@ -17,7 +17,7 @@ func TestShiftMix(t *testing.T) {
 		s := SplitMix64(tt.seed)
 		for i, n := range tt.nexts {
 			if got := s.Next(); got != n {
-				t.Errorf("ShiftMix(%d, %d).Next()=%x, want %x\n", tt.seed, i, got, n)
+				t.Errorf("SplitMix(%d, %d).Next()=%x, want %x\n", tt.seed, i, got, n)
 			}
 		}
 	}
