@@ -1,3 +1,10 @@
+// Package xoroshiro implements the xoroshiro128+ RNG
+/*
+
+This is a literal translation of http://xoroshiro.di.unimi.it/xoroshiro128plus.c
+and http://xoroshiro.di.unimi.it/splitmix64.c
+
+*/
 package xoroshiro
 
 type State [2]uint64
