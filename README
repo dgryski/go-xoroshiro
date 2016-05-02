@@ -1,0 +1,3 @@
+go-xoro: xoroshiro128+ RNG
+
+godoc: https://godoc.org/github.com/dgryski/go-xoroshiro
