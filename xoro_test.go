@@ -1,4 +1,4 @@
-package xoro
+package xoroshiro
 
 import (
 	"testing"

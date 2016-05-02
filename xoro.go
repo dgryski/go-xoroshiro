@@ -1,4 +1,4 @@
-package xoro
+package xoroshiro
 
 type State [2]uint64
 
