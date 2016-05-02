@@ -7,8 +7,10 @@ and http://xoroshiro.di.unimi.it/splitmix64.c
 */
 package xoroshiro
 
+// State is a xoroshiro128+ RNG state.
 type State [2]uint64
 
+// Next returns the next number in the sequence
 func (s *State) Next() uint64 {
 	s0, s1 := s[0], s[1]
 	result := s0 + s1
@@ -24,8 +26,10 @@ func rotl(x uint64, k uint) uint64 {
 	return (x << k) | (x >> (64 - k))
 }
 
+// SplitMix64 is an RNG with 64-bits of state
 type SplitMix64 uint64
 
+// Next returns the next number in the sequence
 func (x *SplitMix64) Next() uint64 {
 	*x += 0x9E3779B97F4A7C15
 	z := uint64(*x)
