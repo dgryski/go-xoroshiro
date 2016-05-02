@@ -14,7 +14,7 @@ func TestShiftMix(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		s := ShiftMix64(tt.seed)
+		s := SplitMix64(tt.seed)
 		for i, n := range tt.nexts {
 			if got := s.Next(); got != n {
 				t.Errorf("ShiftMix(%d, %d).Next()=%x, want %x\n", tt.seed, i, got, n)

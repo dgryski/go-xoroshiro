@@ -24,9 +24,9 @@ func rotl(x uint64, k uint) uint64 {
 	return (x << k) | (x >> (64 - k))
 }
 
-type ShiftMix64 uint64
+type SplitMix64 uint64
 
-func (x *ShiftMix64) Next() uint64 {
+func (x *SplitMix64) Next() uint64 {
 	*x += 0x9E3779B97F4A7C15
 	z := uint64(*x)
 	z = (z ^ (z >> 30)) * 0xBF58476D1CE4E5B9
