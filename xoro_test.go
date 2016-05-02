@@ -1,6 +1,7 @@
 package xoroshiro
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -40,4 +41,30 @@ func TestXoroShift(t *testing.T) {
 			}
 		}
 	}
+}
+
+func ExampleState() {
+
+	// If you have 128 bits of randomness for a seed, use those.
+	// If you have a single 64-bit seed, generate more with SplitMix64.
+
+	seed := SplitMix64(0x0ddc0ffeebadf00d)
+
+	s := State([2]uint64{seed.Next(), seed.Next()})
+
+	for i := 0; i < 10; i++ {
+		fmt.Println(s.Next())
+	}
+
+	// Output:
+	// 11814330020949985800
+	// 11817088786836023749
+	// 1654166990350674155
+	// 14112748191344281834
+	// 4288295283113472773
+	// 8391955421631067594
+	// 168274855724945977
+	// 2815117763357611551
+	// 12187186948608395331
+	// 10629044371437376348
 }
