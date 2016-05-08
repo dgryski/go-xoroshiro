@@ -2,6 +2,7 @@ package xoroshiro
 
 import (
 	"fmt"
+	"math/rand"
 	"testing"
 )
 
@@ -68,3 +69,6 @@ func ExampleState() {
 	// 12187186948608395331
 	// 10629044371437376348
 }
+
+// Verify State implements rand.Source
+var _ rand.Source = &State{}

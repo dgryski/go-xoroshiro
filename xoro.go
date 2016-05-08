@@ -22,6 +22,15 @@ func (s *State) Next() uint64 {
 	return result
 }
 
+func (s *State) Int63() int64 {
+	return int64(s.Next() & 0x7fffffffffffffff)
+}
+
+func (s *State) Seed(seed int64) {
+	splitmix := SplitMix64(0x0ddc0ffeebadf00d)
+	s[0], s[1] = splitmix.Next(), splitmix.Next()
+}
+
 func rotl(x uint64, k uint) uint64 {
 	return (x << k) | (x >> (64 - k))
 }
