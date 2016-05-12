@@ -44,6 +44,39 @@ func TestXoroShift(t *testing.T) {
 	}
 }
 
+func TestXoroJump(t *testing.T) {
+
+	var tests = []struct {
+		seed  [2]uint64
+		nexts []uint64
+	}{
+		{[2]uint64{0x916df851e2aee44, 0x9ade0f09ffca1bc4},
+			[]uint64{
+				7317131579098254132,
+				9124900356304480981,
+				16687222659825326268,
+				10655786156111842618,
+				384402176967881600,
+				2173327412138143738,
+				14504858356897473757,
+				4786136656534720403,
+				3081009357741310655,
+				4072612981517571462,
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		s := State(tt.seed)
+		for i, n := range tt.nexts {
+			s.Jump()
+			if got := s.Next(); got != n {
+				t.Errorf("XoroShiro(%v, %d).Jump().Next()=%x, want %x\n", tt.seed, i, got, n)
+			}
+		}
+	}
+}
+
 func ExampleState() {
 
 	// If you have 128 bits of randomness for a seed, use those.

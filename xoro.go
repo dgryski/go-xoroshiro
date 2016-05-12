@@ -31,6 +31,25 @@ func (s *State) Seed(seed int64) {
 	s[0], s[1] = splitmix.Next(), splitmix.Next()
 }
 
+func (s *State) Jump() {
+	var JUMP = [2]uint64{0xbeac0467eba5facb, 0xd86b048b86aa9922}
+
+	var s0, s1 uint64
+
+	for _, v := range JUMP {
+		for b := uint(0); b < 64; b++ {
+			if (v & (1 << b)) != 0 {
+				s0 ^= s[0]
+				s1 ^= s[1]
+			}
+			s.Next()
+		}
+	}
+
+	s[0] = s0
+	s[1] = s1
+}
+
 func rotl(x uint64, k uint) uint64 {
 	return (x << k) | (x >> (64 - k))
 }
