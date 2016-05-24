@@ -27,7 +27,7 @@ func (s *State) Int63() int64 {
 }
 
 func (s *State) Seed(seed int64) {
-	splitmix := SplitMix64(0x0ddc0ffeebadf00d)
+	splitmix := SplitMix64(seed)
 	s[0], s[1] = splitmix.Next(), splitmix.Next()
 }
 
