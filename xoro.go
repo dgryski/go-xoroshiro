@@ -10,6 +10,13 @@ package xoroshiro
 // State is a xoroshiro128+ RNG state.
 type State [2]uint64
 
+// New returns a new RNG
+func New(seed int64) State {
+	var s State
+	s.Seed(seed)
+	return s
+}
+
 // Next returns the next number in the sequence
 func (s *State) Next() uint64 {
 	s0, s1 := s[0], s[1]
