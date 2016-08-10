@@ -33,6 +33,23 @@ func (s *State) Int63() int64 {
 	return int64(s.Next() & 0x7fffffffffffffff)
 }
 
+// Int63n returns a uniform integer [0, n)
+func (s *State) Int63n(n int64) int64 {
+	if n <= 0 {
+		panic("invalid argument to Int63n")
+	}
+	// shortcut powers of 2
+	if n&(n-1) == 0 {
+		return s.Int63() & (n - 1)
+	}
+	max := int64((1 << 63) - 1 - (1<<63)%uint64(n))
+	r := s.Int63()
+	for r > max {
+		r = s.Int63()
+	}
+	return r % n
+}
+
 func (s *State) Seed(seed int64) {
 	splitmix := SplitMix64(seed)
 	s[0], s[1] = splitmix.Next(), splitmix.Next()
